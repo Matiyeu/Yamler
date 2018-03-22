@@ -138,12 +138,12 @@ public class BaseConfigMapper extends BaseConfig
                     for (String comment : comments.get(search)) {
                         if (comment.trim().isEmpty()) {
                             writeLines.append("\n");
-                            break;
+                        } else {
+                            writeLines.append(new String(new char[depth - 2]).replace("\0", " "));
+                            writeLines.append("# ");
+                            writeLines.append(comment);
+                            writeLines.append("\n");
                         }
-                        writeLines.append(new String(new char[depth - 2]).replace("\0", " "));
-                        writeLines.append("# ");
-                        writeLines.append(comment);
-                        writeLines.append("\n");
                     }
                 }
 
@@ -176,7 +176,7 @@ public class BaseConfigMapper extends BaseConfig
     public void addComment(String key, String value)
     {
         if (!comments.containsKey(key)) {
-            comments.put(key, new ArrayList<String>());
+            comments.put(key, new ArrayList<>());
         }
 
         comments.get(key).add(value);
