@@ -135,10 +135,14 @@ public class BaseConfigMapper extends BaseConfig {
 
 				if (comments.containsKey(search)) {
 					for (String comment : comments.get(search)) {
-						writeLines.append(new String(new char[depth - 2]).replace("\0", " "));
-						writeLines.append("# ");
-						writeLines.append(comment);
-						writeLines.append("\n");
+						 if (comment.trim().isEmpty()) {
+                           			 	writeLines.append("\n");
+                        			} else {
+							writeLines.append(new String(new char[depth - 2]).replace("\0", " "));
+							writeLines.append("# ");
+							writeLines.append(comment);
+							writeLines.append("\n");
+						 }
 					}
 				}
 
